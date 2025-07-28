@@ -12,7 +12,9 @@
   "type": "commonjs",
   "dependencies": {
     "dotenv": "^17.2.0",
+    "express": "^5.1.0",
     "mongodb": "^6.18.0",
-    "mqtt": "^5.13.3"
+    "mqtt": "^5.13.3",
+    "socket.io": "^4.8.1"
   }
 }

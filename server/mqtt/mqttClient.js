@@ -1,15 +1,13 @@
- 
+// mqttClient.js
+
 const mqtt = require('mqtt');
-const { MongoClient } = require('mongodb');
-const fs = require('fs');
-const path = require('path');
 const { logToCSV } = require('../utils/csvLogger');
 const { insertToMongo } = require('../db/mongoClient');
 
 const brokerUrl = process.env.MQTT_BROKER_URL;
 const topic = process.env.MQTT_TOPIC;
 
-function connectMQTT() {
+function connectMQTT(io) {
   const client = mqtt.connect(brokerUrl);
 
   client.on('connect', () => {
@@ -28,7 +26,10 @@ function connectMQTT() {
       const payload = JSON.parse(message.toString());
 
       // Log to terminal
-      console.log(`[MQTT] Received:`, payload);
+      // console.log(`[MQTT] Received:`, payload);
+
+      // Broadcast to frontend via WebSocket
+      io.emit('sensorData', payload); // <-- this line is new
 
       // Save to MongoDB
       insertToMongo(payload);
