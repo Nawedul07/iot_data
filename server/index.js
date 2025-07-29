@@ -13,9 +13,19 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // your frontend port
-    methods: ["GET", "POST"]
+    origin: [
+      "http://localhost:5173",
+      "https://5f0673cf773d.ngrok-free.app", // frontend ngrok
+      "https://e550c8e17376.ngrok-free.app"  // backend ngrok (needed for socket handshake)
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
   }
+});
+
+
+app.get("/", (req, res) => {
+  res.send("Socket.IO backend running via Ngrok");
 });
 
 const PORT = process.env.PORT || 5000;
