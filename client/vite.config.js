@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // Replace with your actual ngrok domain
-const NGROK_DOMAIN = '5f0673cf773d.ngrok-free.app';    //frontend url 
+const NGROK_DOMAIN = '008e743f5d24.ngrok-free.app';    //frontend url 
 
 export default defineConfig({
   plugins: [react()],

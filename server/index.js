@@ -15,8 +15,8 @@ const io = new Server(server, {
   cors: {
     origin: [
       "http://localhost:5173",
-      "https://5f0673cf773d.ngrok-free.app", // frontend ngrok
-      "https://e550c8e17376.ngrok-free.app"  // backend ngrok (needed for socket handshake)
+      "https://80b080096182.ngrok-free.app", // backend ngrok
+      "https://80b080096182.ngrok-free.app"  // frontend ngrok (needed for socket handshake)
     ],
     methods: ["GET", "POST"],
     credentials: true

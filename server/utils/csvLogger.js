@@ -1,4 +1,3 @@
- 
 const fs = require('fs');
 const path = require('path');
 const logPath = path.resolve(process.env.CSV_LOG_PATH || './logs/sensor_data.csv');
@@ -11,10 +10,10 @@ function ensureFileExists() {
   }
 }
 
-function logToCSV(data) {
+function logToCSV({ value, dutyCycle }) {
   ensureFileExists();
   const timestamp = new Date().toISOString();
-  const line = `${timestamp},${data.value},${data.dutyCycle}\n`;
+  const line = `${timestamp},${value},${dutyCycle}\n`;
   fs.appendFileSync(logPath, line);
 }
 

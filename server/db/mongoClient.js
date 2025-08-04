@@ -30,10 +30,16 @@ function insertToMongo(data) {
     console.warn('[MongoDB] Collection not ready, skipping insert.');
     return;
   }
+
+const { value, dutyCycle, generatedAt } = data;
+
   collection.insertOne({
-    ...data,
-    timestamp: new Date(),
+    value,
+    dutyCycle,
+    generatedAt: new Date(generatedAt),  // ESP32's original timestamp
+    receivedAt: new Date(),              // optional: when it reached server
   });
+
 }
 
 module.exports = { insertToMongo };
